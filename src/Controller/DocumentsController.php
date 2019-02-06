@@ -25,6 +25,7 @@ class DocumentsController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/new", name="documents_new", methods={"GET","POST"})
      */
