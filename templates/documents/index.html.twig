@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Documents index{% endblock %}
+
+{% block body %}
+    <h1>Documents index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ReleaseDate</th>
+                <th>Resume</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td>{{ document.id }}</td>
+                <td>{{ document.title }}</td>
+                <td>{{ document.author }}</td>
+                <td>{{ document.releaseDate ? document.releaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ document.resume }}</td>
+                <td>
+                    <a href="{{ path('documents_show', {'id': document.id}) }}">show</a>
+                    <a href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('documents_new') }}">Create new</a>
+{% endblock %}
