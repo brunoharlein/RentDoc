@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,16 @@ class Borrower
      * @ORM\Column(type="string", length=255)
      */
     private $borrowerNumber;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Documents", mappedBy="borrower")
+     */
+    private $documents;
+
+    public function __construct()
+    {
+        $this->documents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +97,37 @@ class Borrower
     public function setBorrowerNumber(string $borrowerNumber): self
     {
         $this->borrowerNumber = $borrowerNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Documents[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Documents $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->setBorrower($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Documents $document): self
+    {
+        if ($this->documents->contains($document)) {
+            $this->documents->removeElement($document);
+            // set the owning side to null (unless already changed)
+            if ($document->getBorrower() === $this) {
+                $document->setBorrower(null);
+            }
+        }
 
         return $this;
     }
