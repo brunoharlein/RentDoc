@@ -16,6 +16,8 @@ class DocumentsType extends AbstractType
             ->add('author')
             ->add('releaseDate')
             ->add('resume')
+            ->add('category_id')
+            ->add('borrower_id')
         ;
     }
 
