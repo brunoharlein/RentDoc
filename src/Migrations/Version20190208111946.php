@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190206142441 extends AbstractMigration
+final class Version20190208111946 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,12 +22,11 @@ final class Version20190206142441 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('CREATE TABLE documents (id INT AUTO_INCREMENT NOT NULL, category_id INT NOT NULL, borrower_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, author VARCHAR(255) NOT NULL, release_date DATE NOT NULL, resume VARCHAR(255) NOT NULL, INDEX IDX_A2B0728812469DE2 (category_id), INDEX IDX_A2B0728811CE312B (borrower_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE borrower (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, borrower_number VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE documents ADD category_id INT NOT NULL, ADD borrower_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE documents ADD CONSTRAINT FK_A2B0728812469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
         $this->addSql('ALTER TABLE documents ADD CONSTRAINT FK_A2B0728811CE312B FOREIGN KEY (borrower_id) REFERENCES borrower (id)');
-        $this->addSql('CREATE INDEX IDX_A2B0728812469DE2 ON documents (category_id)');
-        $this->addSql('CREATE INDEX IDX_A2B0728811CE312B ON documents (borrower_id)');
     }
 
     public function down(Schema $schema) : void
@@ -35,11 +34,10 @@ final class Version20190206142441 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE documents DROP FOREIGN KEY FK_A2B0728812469DE2');
-        $this->addSql('DROP TABLE category');
         $this->addSql('ALTER TABLE documents DROP FOREIGN KEY FK_A2B0728811CE312B');
-        $this->addSql('DROP INDEX IDX_A2B0728812469DE2 ON documents');
-        $this->addSql('DROP INDEX IDX_A2B0728811CE312B ON documents');
-        $this->addSql('ALTER TABLE documents DROP category_id, DROP borrower_id');
+        $this->addSql('ALTER TABLE documents DROP FOREIGN KEY FK_A2B0728812469DE2');
+        $this->addSql('DROP TABLE documents');
+        $this->addSql('DROP TABLE borrower');
+        $this->addSql('DROP TABLE category');
     }
 }
