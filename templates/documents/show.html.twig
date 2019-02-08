@@ -4,14 +4,14 @@
 
 {% block body %}
     <h1>Documents</h1>
-    <form class="form-inline" action="" method="post">
+    <!-- <form class="form-inline" action="" method="post">
       <select class="form-control" name="">
         <option value="...">Trier...</option>
         <option value="1">title</option>
         <option value="0">author</option>
       </select>
       <button class="btn btn-primary" type="submit" name="button">OK</button>
-    </form>
+    </form> -->
 
 
     <table class="table">
@@ -35,6 +35,14 @@
             <tr>
                 <th>Resume</th>
                 <td>{{ document.resume }}</td>
+            </tr>
+            <tr>
+                <th>categorie</th>
+                <!-- <td> document.category.id </td> -->
+            </tr>
+            <tr>
+              <th>Auteur</th>
+              <!-- <td> document.borrower.id </td> -->
             </tr>
         </tbody>
     </table>
