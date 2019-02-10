@@ -12,7 +12,7 @@
   <button class="btn btn-primary" type="submit" name="button">OK</button>
 </form> -->
 
-    <h1>Documents index</h1>
+    <h1>Liste des documents</h1>
 
     <table class="table">
         <thead>
@@ -22,9 +22,9 @@
                 <th>Author</th>
                 <th>ReleaseDate</th>
                 <th>Resume</th>
-                <th>actions</th>
-                <th>categorie</th>
-                <th>utilisateur</th>
+                <th>Actions</th>
+                <th>Categorie</th>
+                <th>Emprunté par:</th>
             </tr>
         </thead>
         <tbody>
@@ -36,9 +36,11 @@
                 <td>{{ document.releaseDate ? document.releaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ document.resume }}</td>
                 <td>
-                    <a href="{{ path('documents_show', {'id': document.id}) }}">show</a>
-                    <a href="{{ path('documents_edit', {'id': document.id}) }}">edit</a>
+                    <a href="{{ path('documents_show', {'id': document.id}) }}">Voir\</a>
+                    <a href="{{ path('documents_edit', {'id': document.id}) }}">Editer</a>
                 </td>
+                <td> {{ document.category.name }} </td>
+                <td> {{ document.borrower.name }} </td>
                  
 
             </tr>
@@ -50,5 +52,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('documents_new') }}">Create new</a>
+    <a href="{{ path('documents_new') }}">Ajouter  un nouveux  document</a>
 {% endblock %}

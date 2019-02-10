@@ -18,14 +18,12 @@ class DocumentsType extends AbstractType
             ->add('author')
             ->add('releaseDate')
             ->add('resume')
-            ->add('Category', EntityType::class,[
-                'class' => Category::class,
-                'choice_label' => 'name',
-                'choice_value' => 'id'])
-            ->add('Borrower', EntityType::class,[
-                'class' => Borrower::class,
-                'choice_label' => 'name',])
-            ->add('submit', SubmitType::class)
+            // ->add(‘Category’, EntityType::class, [
+            //     ‘class’ => Category::class,
+            //     ‘choice_label’ => ‘name’,])
+            //     ->add(‘Borrower’, EntityType::class, [
+            //     ‘class’ => Borrower::class,
+            //     ‘choice_label’ => ‘name’,])
         ;
     }
 
