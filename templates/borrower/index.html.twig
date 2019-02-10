@@ -3,17 +3,20 @@
 {% block title %}Borrower index{% endblock %}
 
 {% block body %}
-    <h1>Borrower index</h1>
+    <h1>Listes emprunteurs</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Address</th>
+                <th>Nom</th>
+                <th>Addresse</th>
                 <th>Email</th>
-                <th>BorrowerNumber</th>
-                <th>actions</th>
+                <th>Numéro</th>
+                <th>Livres empruntés</th>
+                <th>Actions</th>
+
+                
             </tr>
         </thead>
         <tbody>
@@ -25,8 +28,8 @@
                 <td>{{ borrower.email }}</td>
                 <td>{{ borrower.borrowerNumber }}</td>
                 <td>
-                    <a href="{{ path('borrower_show', {'id': borrower.id}) }}">show</a>
-                    <a href="{{ path('borrower_edit', {'id': borrower.id}) }}">edit</a>
+                    <a href="{{ path('borrower_show', {'id': borrower.id}) }}">Voir</a>
+                    <a href="{{ path('borrower_edit', {'id': borrower.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('borrower_new') }}">Create new</a>
+    <a href="{{ path('borrower_new') }}">Nouvel emprunteur</a>
 {% endblock %}
