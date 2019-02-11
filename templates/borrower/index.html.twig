@@ -13,6 +13,7 @@
                 <th>Address</th>
                 <th>Email</th>
                 <th>BorrowerNumber</th>
+                <!-- <th>Book</th> -->
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ borrower.address }}</td>
                 <td>{{ borrower.email }}</td>
                 <td>{{ borrower.borrowerNumber }}</td>
+                <!-- <td> borrower.documents.title </td> -->
                 <td>
                     <a href="{{ path('borrower_show', {'id': borrower.id}) }}">show</a>
                     <a href="{{ path('borrower_edit', {'id': borrower.id}) }}">edit</a>

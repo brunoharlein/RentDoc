@@ -44,6 +44,17 @@ class DocumentsRepository extends ServiceEntityRepository
     //   ->getResult()
     // }
 
+    public function findDocumentsBorrower ($id)
+{
+    return $this->createQueryBuilder('b')
+        ->innerJoin('d.name', 'b')
+        ->addSelect('b')
+        ->andWhere('b.id = :id')
+        ->setParameter('id', $Id)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+
     /*
     public function findOneBySomeField($value): ?Documents
     {
