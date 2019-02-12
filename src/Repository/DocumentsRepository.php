@@ -36,13 +36,13 @@ class DocumentsRepository extends ServiceEntityRepository
     }
     */
 
-    // public function findCategoryDocuments () {
-    //   return $this->createQueryBuilder('d')
-    //   ->leftJoin('d.category', 'c')
-    //   ->addSelect('c')
-    //   ->getQuery()
-    //   ->getResult()
-    // }
+    public function findCategoryDocuments () {
+      return $this->createQueryBuilder('d')
+      ->addSelect('c')
+      ->leftJoin('d.category', 'c')
+      ->getQuery()
+      ->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Documents
