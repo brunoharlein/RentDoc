@@ -58,7 +58,19 @@ class DocumentsController extends AbstractController
             'document' => $document,
         ]);
     }
+     /**
+     * @Route("/rent/{id}", name="documents_rent", methods={"GET"})
+     */
+    public function rent(Documents $document): Response
+    {
+        return $this->render('documents/_rent.html.twig',[
+            'document' => $document,
+            $form = $this->createForm(Documents::class, $document)
 
+        ]);
+
+    }
+    
     /**
      * @Route("/{id}/edit", name="documents_edit", methods={"GET","POST"})
      */

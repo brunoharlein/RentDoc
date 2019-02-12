@@ -28,8 +28,8 @@
                 <td>{{ borrower.email }}</td>
                 <td>{{ borrower.borrowerNumber }}</td>
                 <td>
-                    <a href="{{ path('borrower_show', {'id': borrower.id}) }}">Voir</a>
-                    <a href="{{ path('borrower_edit', {'id': borrower.id}) }}">Editer</a>
+                    <a href="{{ path('borrower_show', {'id': borrower.id}) }}" class="btn btn-success">Voir</a>
+                    <a href="{{ path('borrower_edit', {'id': borrower.id}) }}" class="btn btn-success">Editer</a>
                 </td>
             </tr>
         {% else %}

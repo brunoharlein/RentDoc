@@ -47,6 +47,11 @@ class Documents
      */
     private $borrower;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $statu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class Documents
     public function setBorrower(?Borrower $borrower): self
     {
         $this->borrower = $borrower;
+
+        return $this;
+    }
+
+    public function getStatu(): ?bool
+    {
+        return $this->statu;
+    }
+
+    public function setStatu(bool $statu): self
+    {
+        $this->statu = $statu;
 
         return $this;
     }
