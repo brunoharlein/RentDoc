@@ -36,11 +36,12 @@
                 <td>{{ document.releaseDate ? document.releaseDate|date('Y-m-d') : '' }}</td>
                 <td>{{ document.resume }}</td>
                 <td>
-                    <a href="{{ path('documents_show', {'id': document.id}) }}">Voir\</a>
-                    <a href="{{ path('documents_edit', {'id': document.id}) }}">Editer</a>
+                    <a href="{{ path('documents_show', {'id': document.id}) }}" class="btn btn-success">Voir\</a>
+                    <a href="{{ path('documents_edit', {'id': document.id}) }}" class="btn btn-success">Editer</a>
                 </td>
                 <td> {{ document.category.name }} </td>
                 
+
             </tr>
         {% else %}
             <tr>
@@ -50,5 +51,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('documents_new') }}">Ajouter  un nouveux  document</a>
+    <a href="{{ path('documents_new') }}" class="btn btn-success">Ajouter  un nouveux  document</a>
 {% endblock %}
