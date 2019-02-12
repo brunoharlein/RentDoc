@@ -21,7 +21,7 @@ class DocumentsController extends AbstractController
     public function index(DocumentsRepository $documentsRepository): Response
     {
         return $this->render('documents/index.html.twig', [
-            'documents' => $documentsRepository->findAll(),
+            'documents' => $documentsRepository->findCategoryDocuments(),
         ]);
     }
 

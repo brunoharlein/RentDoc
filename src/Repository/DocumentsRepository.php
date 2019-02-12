@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Documents;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -18,6 +19,17 @@ class DocumentsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Documents::class);
     }
+
+
+    public function findCategoryDocuments () {
+      return $this->createQueryBuilder('d')
+      ->addSelect('c')
+      ->leftJoin('d.category', 'c')
+      ->getQuery()
+      ->getResult();
+    }
+
+
 
     // /**
     //  * @return Documents[] Returns an array of Documents objects
@@ -35,25 +47,6 @@ class DocumentsRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    // public function findCategoryDocuments () {
-    //   return $this->createQueryBuilder('d')
-    //   ->leftJoin('d.category', 'c')
-    //   ->addSelect('c')
-    //   ->getQuery()
-    //   ->getResult()
-    // }
-
-    public function findDocumentsBorrower ($id)
-{
-    return $this->createQueryBuilder('b')
-        ->innerJoin('d.name', 'b')
-        ->addSelect('b')
-        ->andWhere('b.id = :id')
-        ->setParameter('id', $Id)
-        ->getQuery()
-        ->getOneOrNullResult();
-}
 
     /*
     public function findOneBySomeField($value): ?Documents

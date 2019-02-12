@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Form;
 
 use App\Entity\Borrower;
@@ -22,9 +23,9 @@ class DocumentsType extends AbstractType
             ->add('Category', EntityType::class, [
             'class' => Category::class,
             'choice_label' => 'name',])
-            ->add('Borrower', EntityType::class, [
-            'class' => Borrower::class,
-            'choice_label' => 'name',])
+            // ->add('Borrower', EntityType::class, [
+            // 'class' => Borrower::class,
+            // 'choice_label' => 'name',])
         ;
     }
 
