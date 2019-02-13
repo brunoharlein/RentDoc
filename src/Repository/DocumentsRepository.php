@@ -15,21 +15,33 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class DocumentsRepository extends ServiceEntityRepository
 {
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Documents::class);
     }
 
 
-    public function findCategoryDocuments () {
-      return $this->createQueryBuilder('d')
-      ->addSelect('c')
-      ->leftJoin('d.category', 'c')
-      ->getQuery()
-      ->getResult();
+    // public function findCategoryDocuments () {
+    //   return $this->createQueryBuilder('d')
+    //   ->addSelect('c')
+    //   ->leftJoin('d.category', 'c')
+    //   ->getQuery()
+    //   ->getResult();
+    // }
+
+
+    public function findCategoryDocuments (Category $category = null)
+    {
+      $request = $this->createQueryBuilder('d')
+        ->addSelect('c')
+        ->leftJoin('d.category', 'c');
+      if($category) {
+        $request = $request->andWhere('c.id = :id')->setParameter('id', $category->getId());
+      }
+        return $request->getQuery()
+        ->getResult();
     }
-
-
 
     // /**
     //  * @return Documents[] Returns an array of Documents objects

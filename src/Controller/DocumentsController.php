@@ -1,29 +1,55 @@
 <?php
 
+
 namespace App\Controller;
 
 use App\Entity\Documents;
+use App\Entity\Category;
 use App\Form\DocumentsType;
 use App\Repository\DocumentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\CategoryTriType;
+
 
 /**
  * @Route("/documents")
  */
+
 class DocumentsController extends AbstractController
 {
     /**
-     * @Route("/", name="documents_index", methods={"GET"})
+     * @Route("/", name="documents_index")
      */
-    public function index(DocumentsRepository $documentsRepository): Response
+    // public function index(DocumentsRepository $documentsRepository): Response
+    // {
+    //
+    //     return $this->render('documents/index.html.twig', [
+    //         'documents' => $documentsRepository->findCategoryDocuments(),
+    //     ]);
+    // }
+    public function index(DocumentsRepository $Documents, Request $request): Response
     {
+        $form = $this->createForm(CategoryTriType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+          $category = $form->getData()["category"];
+          var_dump($category);
+          $documents = $this->getDoctrine()->getRepository(Documents::class)->findCategoryDocuments($category);
+        }
+        else {
+          $documents = $this->getDoctrine()->getRepository(Documents::class)->findCategoryDocuments();
+        }
+
         return $this->render('documents/index.html.twig', [
-            'documents' => $documentsRepository->findCategoryDocuments(),
+            'documents' => $documents,
+            'form' => $form->createView()
         ]);
     }
+
 
 
     /**
