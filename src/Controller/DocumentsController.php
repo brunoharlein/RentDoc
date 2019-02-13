@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Documents;
 use App\Form\DocumentsType;
+use App\Form\RentType;
 use App\Repository\DocumentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,13 +62,22 @@ class DocumentsController extends AbstractController
      /**
      * @Route("/rent/{id}", name="documents_rent", methods={"GET"})
      */
-    public function rent(Documents $document): Response
+    public function rent($id, Request $request)
     {
-        return $this->render('documents/_rent.html.twig',[
-            'document' => $document,
-            $form = $this->createForm(Documents::class, $document)
+        // je recupère mon repository que je stock dans $rpository
+        $repository = $this->getDoctrine()->getRepository(Documents::class);
 
-        ]);
+        $document = $repository->find($id);
+            $form = $this->createForm(RentType::class);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->valid()){
+        
+            }
+
+              return $this->render('documents/_rent.html.twig', [
+                  'form' => $form->createView(),
+
+              ]);
 
     }
     

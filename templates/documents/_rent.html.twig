@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>Emprunter documents</h1>
-    {{ include('documents/_form.html.twig') }}
-
+{{ form(form) }}
     <a href="{{ path('documents_index') }}" class="btn btn-success">Revenir à liste</a>
 {% endblock %}
