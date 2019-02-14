@@ -4,15 +4,6 @@
 
 {% block body %}
     <h1>Documents</h1>
-    <!-- <form class="form-inline" action="" method="post">
-      <select class="form-control" name="">
-        <option value="...">Trier...</option>
-        <option value="1">title</option>
-        <option value="0">author</option>
-      </select>
-      <button class="btn btn-primary" type="submit" name="button">OK</button>
-    </form> -->
-
 
     <table class="table">
         <tbody>
@@ -21,15 +12,15 @@
                 <td>{{ document.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ document.title }}</td>
             </tr>
             <tr>
-                <th>Author</th>
+                <th>Auteur</th>
                 <td>{{ document.author }}</td>
             </tr>
             <tr>
-                <th>ReleaseDate</th>
+                <th>Edition</th>
                 <td>{{ document.releaseDate ? document.releaseDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
@@ -47,9 +38,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('documents_index') }}">Revenir à la liste/</a>
-
-    <a href="{{ path('documents_edit', {'id': document.id}) }}">Editer</a>
-
+    <a href="{{ path('documents_index') }}" class="btn btn-success">Revenir à la liste/</a>
+    <a href="{{ path('documents_rent', {'id': document.id}) }}" class="btn btn-success">Emprunter</a>
+    <a href="{{ path('documents_edit', {'id': document.id}) }}" class="btn btn-success">Editer</a>
     {{ include('documents/_delete_form.html.twig') }}
 {% endblock %}
