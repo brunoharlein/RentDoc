@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Documents;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -14,9 +15,32 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class DocumentsRepository extends ServiceEntityRepository
 {
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Documents::class);
+    }
+
+
+    // public function findCategoryDocuments () {
+    //   return $this->createQueryBuilder('d')
+    //   ->addSelect('c')
+    //   ->leftJoin('d.category', 'c')
+    //   ->getQuery()
+    //   ->getResult();
+    // }
+
+
+    public function findCategoryDocuments (Category $category = null)
+    {
+      $request = $this->createQueryBuilder('d')
+        ->addSelect('c')
+        ->leftJoin('d.category', 'c');
+      if($category) {
+        $request = $request->andWhere('c.id = :id')->setParameter('id', $category->getId());
+      }
+        return $request->getQuery()
+        ->getResult();
     }
 
     // /**
@@ -36,13 +60,6 @@ class DocumentsRepository extends ServiceEntityRepository
     }
     */
 
-    public function findCategoryDocuments () {
-      return $this->createQueryBuilder('d')
-      ->addSelect('c')
-      ->leftJoin('d.category', 'c')
-      ->getQuery()
-      ->getResult();
-    }
 
     /*
     public function findOneBySomeField($value): ?Documents

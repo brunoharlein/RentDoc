@@ -16,7 +16,7 @@
                 <th>Actions</th>
                 <th>Livres empruntés</th>
 
-                
+
             </tr>
         </thead>
         <tbody>
@@ -27,6 +27,7 @@
                 <td>{{ borrower.address }}</td>
                 <td>{{ borrower.email }}</td>
                 <td>{{ borrower.borrowerNumber }}</td>
+                <!-- <td> borrower.documents.title </td> -->
                 <td>
                     <a href="{{ path('borrower_show', {'id': borrower.id}) }}" class="btn btn-success">Voir</a>
                     <a href="{{ path('borrower_edit', {'id': borrower.id}) }}" class="btn btn-success">Editer</a>
