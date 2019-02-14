@@ -13,6 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\CategoryTriType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+ /**
+  * Require ROLE_BIBLIOTHECAIRE for *every* controller method in this class.
+  *
+  * @IsGranted("ROLE_BIBLIOTHECAIRE")
+  */
 
 
 /**
@@ -97,7 +104,7 @@ class DocumentsController extends AbstractController
             $form = $this->createForm(RentType::class);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->valid()){
-        
+
             }
 
               return $this->render('documents/_rent.html.twig', [
@@ -106,7 +113,7 @@ class DocumentsController extends AbstractController
               ]);
 
     }
-    
+
     /**
      * @Route("/{id}/edit", name="documents_edit", methods={"GET","POST"})
      */
