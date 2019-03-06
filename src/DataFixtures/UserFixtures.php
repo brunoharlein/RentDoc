@@ -31,7 +31,7 @@ class UserFixtures extends Fixture
           $user->setRoles (array('ROLE_BIBLIOTHECAIRE'));
           $user->setPassword($this->passwordEncoder->encodePassword(
               $user,
-              'password'
+              'Manzakin'
           ));
 
           $manager->persist($user);

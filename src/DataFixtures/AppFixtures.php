@@ -5,6 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Documents;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
+
 
 class AppFixtures extends Fixture
 {
