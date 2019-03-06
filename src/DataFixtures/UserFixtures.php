@@ -29,8 +29,10 @@ class UserFixtures extends Fixture
           $user->setMail ($faker->email);
           $user->setRoles (array('ROLE_BIBLIOTHECAIRE'));
           $user->setPassword($this->passwordEncoder->encodePassword(
-            $user,
-           'dentiste59'
+
+              $user,
+              'Manzakin'
+
           ));
 
           $manager->persist($user);
